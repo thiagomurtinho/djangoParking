@@ -49,7 +49,7 @@ class RotaryMotion(models.Model):
     checkin   = models.DateTimeField(auto_now=False)
     checkout  = models.DateTimeField(auto_now=False, null=True, blank=True)
     priceHour = models.DecimalField(max_digits=5, decimal_places=2)
-    vehicle   = models.ForeignKey(Vehicle, related_name='vehicle', on_delete=models.CASCADE)
+    vehicle   = models.ForeignKey(Vehicle, related_name='vehicleRotary', on_delete=models.CASCADE)
     paid      = models.BooleanField(default=False)
 
     def totalHours(self):
@@ -61,10 +61,21 @@ class RotaryMotion(models.Model):
     def payable(self):
         if self.checkout == None:
             return 'Not finished'
-        return self.priceHour * self.totalHours()
+        return 'R$' + str(self.priceHour * self.totalHours())
 
     def __str__(self):
         return self.vehicle.board 
 
     def __unicode__(self):
-        return self.vehicle.board 
+        return self.vehicle.board
+
+class Monthly(models.Model):
+    vehicle    = models.ForeignKey(Vehicle, related_name='vehicleMounth', on_delete=models.CASCADE)
+    checkin    = models.DateField()
+    priceMouth = models.DecimalField(max_digits=6, decimal_places=2)
+
+    def __str__(self):
+        return str(self.vehicle) + ' - ' + str(self.checkin)
+
+    def __unicode__(self):
+        return self.vehicle.board
