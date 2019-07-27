@@ -1,4 +1,5 @@
 from django.db import models
+import math
 
 
 class Person(models.Model):
@@ -44,15 +45,26 @@ class Parameters(models.Model):
     def __unicode__(self):
         return 'Parameters'
 
-class rotaryMotion(models.Model):
+class RotaryMotion(models.Model):
     checkin   = models.DateTimeField(auto_now=False)
     checkout  = models.DateTimeField(auto_now=False, null=True, blank=True)
     priceHour = models.DecimalField(max_digits=5, decimal_places=2)
     vehicle   = models.ForeignKey(Vehicle, related_name='vehicle', on_delete=models.CASCADE)
     paid      = models.BooleanField(default=False)
 
+    def totalHours(self):
+        print(type(self.checkout))
+        if self.checkout == None:
+            return 'Not finished'
+        return math.ceil((self.checkout - self.checkin).total_seconds() / 3600)
+
+    def payable(self):
+        if self.checkout == None:
+            return 'Not finished'
+        return self.priceHour * self.totalHours()
+
     def __str__(self):
-        return self.vehicle.board
+        return self.vehicle.board 
 
     def __unicode__(self):
-        return self.vehicle.board
+        return self.vehicle.board 

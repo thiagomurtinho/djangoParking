@@ -4,11 +4,22 @@ from .models import (
     Person, 
     Vehicle, 
     Parameters,
-    rotaryMotion,
+    RotaryMotion,
     )
+
+class RotaryMotionAdmin(admin.ModelAdmin):
+    list_display = (
+        'vehicle',
+        'checkin',
+        'checkout',
+        'payable',
+        'totalHours',
+        'paid',
+        )
+admin.site.register(RotaryMotion, RotaryMotionAdmin)
+
 
 admin.site.register(Brand)
 admin.site.register(Person)
 admin.site.register(Vehicle)
 admin.site.register(Parameters)
-admin.site.register(rotaryMotion)
