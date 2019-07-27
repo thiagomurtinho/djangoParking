@@ -6,6 +6,7 @@ from .models import (
     Parameters,
     RotaryMotion,
     Monthly,
+    RotaryMonthly,
     )
 
 class RotaryMotionAdmin(admin.ModelAdmin):
@@ -18,6 +19,14 @@ class RotaryMotionAdmin(admin.ModelAdmin):
         'paid',
         )
 admin.site.register(RotaryMotion, RotaryMotionAdmin)
+
+class RotaryMonthlyAdmin(admin.ModelAdmin):
+    list_display = (
+        'monthly',
+        'payDay',
+        'totalPaid',
+        )
+admin.site.register(RotaryMonthly, RotaryMonthlyAdmin)
 
 
 admin.site.register(Brand)

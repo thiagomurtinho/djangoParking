@@ -79,3 +79,14 @@ class Monthly(models.Model):
 
     def __unicode__(self):
         return self.vehicle.board
+
+class RotaryMonthly(models.Model):
+    monthly = models.ForeignKey(Monthly, related_name='monthly', on_delete=models.CASCADE)
+    payDay = models.DateField()
+    totalPaid = models.DecimalField(max_digits=6, decimal_places=2)
+
+    def __str__(self):
+        return str(self.monthly) + ' - ' + str(self.totalPaid)
+
+    def __unicode__(self):
+        return self.totalPaid
