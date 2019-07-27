@@ -29,8 +29,17 @@ class Vehicle(models.Model):
     comments= models.TextField()
 
     def __str__(self):
-        return self.board
+        return self.brand.name + ' - ' + self.board
 
     def __unicode__(self):
         return self.board
 
+class Parameters(models.Model):
+    priceHour   = models.DecimalField(max_digits=3, decimal_places=2)
+    monthHour   = models.DecimalField(max_digits=5, decimal_places=2)
+
+    def __str__(self):
+        return 'Parameters'
+
+    def __unicode__(self):
+        return 'Parameters'
