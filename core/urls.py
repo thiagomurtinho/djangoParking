@@ -5,6 +5,7 @@ from .views import (
     vehicleList,
     rotaryMotion,
     monthly,
+    rotaryMonthly,
     )
 
 
@@ -14,4 +15,5 @@ urlpatterns = [
     path('vehicle_list/', vehicleList, name='core_vehicles_list'),
     path('rotaryMotion_list/', rotaryMotion, name='core_rotaryMotion_list'),
     path('monthly_list/', monthly, name='core_monthly_list'),
+    path('rotaryMonthly_list/', rotaryMonthly, name='core_rotaryMonthly_list'),
 ]

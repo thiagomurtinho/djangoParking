@@ -4,6 +4,7 @@ from .models import (
     Vehicle,
     RotaryMotion,
     Monthly,
+    RotaryMonthly,
     )
 
 
@@ -52,4 +53,13 @@ def monthly(request):
     }
 
     return render(request, 'core/monthlyList.html', context)
+
+def rotaryMonthly(request):
+    rotaryMonthly  = RotaryMonthly.objects.all()
+    
+    context = {
+        'rotaryMonthly': rotaryMonthly,
+    }
+
+    return render(request, 'core/rotaryMonthlyList.html', context)
 
