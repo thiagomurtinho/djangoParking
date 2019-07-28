@@ -2,7 +2,8 @@ from django.shortcuts import render
 from .models import (
     Person,
     Vehicle,
-    RotaryMotion
+    RotaryMotion,
+    Monthly,
     )
 
 
@@ -42,4 +43,13 @@ def rotaryMotion(request):
     }
 
     return render(request, 'core/rotaryMotionList.html', context)
+
+def monthly(request):
+    monthly  = Monthly.objects.all()
+    
+    context = {
+        'monthly': monthly,
+    }
+
+    return render(request, 'core/monthlyList.html', context)
 
