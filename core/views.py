@@ -10,6 +10,7 @@ from .forms import (
     PersonForm,
     VehicleForm,
     RotaryMotionForm,
+    MonthlyForm,
 )
 
 
@@ -79,14 +80,26 @@ def newRotaryMotion(request):
 
     return redirect('core_rotaryMotion_list')
 
+#Monthly Viwes
 def monthly(request):
-    monthly  = Monthly.objects.all()
-    
+    monthly = Monthly.objects.all()
+    form    = MonthlyForm()
+
     context = {
         'monthly': monthly,
+        'form'   : form
     }
 
     return render(request, 'core/monthlyList.html', context)
+
+
+def newMonthly(request):
+    form = MonthlyForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    return redirect('core_monthly_list')
+
 
 def rotaryMonthly(request):
     rotaryMonthly  = RotaryMonthly.objects.all()

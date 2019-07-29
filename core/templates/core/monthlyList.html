@@ -12,5 +12,12 @@
     {%for person in monthly%}
         <li>{{ person }}</li>
     {% endfor %}
+
+    <form action="{% url 'core_monthly_new' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
 </body>
 </html>
