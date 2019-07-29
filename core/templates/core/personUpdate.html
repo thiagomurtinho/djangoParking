@@ -7,18 +7,16 @@
     <title>Person</title>
 </head>
 <body>
-    <h1>People list</h1>
+    <h1>People update</h1>
     
     {%for person in people%}
-        <li>
-            <a href="{% url 'core_persons_update' person.id %}">  {{ person.name }} </a>
-        </li>
+        <li>{{ person.name }}</li>
     {% endfor %}
 
-    <form action="{% url 'core_persons_new' %}" method="post">
+    <form action="{% url 'core_persons_update' person.id %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
+        <button type="submit">Save</button>
     </form>
 </body>
 </html>

@@ -2,7 +2,8 @@ from django.urls import path
 from .views import (
     home, 
     personList,
-    newPerson,  
+    newPerson,
+    updatePerson,
     vehicleList,
     newVehicle,
     rotaryMotion,
@@ -19,6 +20,7 @@ urlpatterns = [
     #Person URLs
     path('person_list/', personList, name='core_persons_list'),
     path('person_new/', newPerson, name='core_persons_new'),
+    path('person_new/<id>/', updatePerson, name='core_persons_update'),
     #Vehicle URLs
     path('vehicle_list/', vehicleList, name='core_vehicles_list'),
     path('vehicle_new/', newVehicle, name='core_vehicles_new'),

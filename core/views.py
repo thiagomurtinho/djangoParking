@@ -34,12 +34,28 @@ def personList(request):
 
     return render(request, 'core/personList.html', context)
 
+
 def newPerson(request):
     form = PersonForm(request.POST or None)
     if form.is_valid():
         form.save()
 
     return redirect('core_persons_list')
+
+
+def updatePerson(request, id):
+    person = Person.objects.get(id=id)
+    form   = PersonForm(request.POST or None, instance=person)
+    data   = {
+        'person': person,
+        'form'  : form,
+    }
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_persons_list')
+    else:
+        return render(request, 'core/personUpdate.html', data)
 
 #Vehicle Viwes
 def vehicleList(request):
