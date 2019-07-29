@@ -8,6 +8,7 @@ from .models import (
     )
 from .forms import (
     PersonForm,
+    VehicleForm,
 )
 
 
@@ -18,7 +19,7 @@ def home(request):
 
     return render(request, 'core/index.html', context)
 
-
+#Person Viwes
 def personList(request):
     people  = Person.objects.all()
     form    = PersonForm()
@@ -34,17 +35,28 @@ def newPerson(request):
     form = PersonForm(request.POST or None)
     if form.is_valid():
         form.save()
+
     return redirect('core_persons_list')
 
-
+#Vehicle Viwes
 def vehicleList(request):
-    vehicles  = Vehicle.objects.all()
+    vehicles = Vehicle.objects.all()
+    form     = VehicleForm()
     
-    context = {
+    context  = {
         'vehicles': vehicles,
+        'form'    : form,
     }
 
     return render(request, 'core/vehicleList.html', context)
+
+
+def newVehicle(request):
+    form = VehicleForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    return redirect('core_vehicles_list')
 
 
 def rotaryMotion(request):

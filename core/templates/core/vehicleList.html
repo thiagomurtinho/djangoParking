@@ -12,5 +12,11 @@
     {%for vehicle in vehicles%}
         <li>{{ vehicle }}</li>
     {% endfor %}
+
+    <form action="{% url 'core_vehicles_new' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
