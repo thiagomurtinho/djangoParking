@@ -8,6 +8,7 @@ from .views import (
     rotaryMotion,
     monthly,
     rotaryMonthly,
+    newRotaryMotion,
     )
 
 
@@ -19,7 +20,9 @@ urlpatterns = [
     #Vehicle URLs
     path('vehicle_list/', vehicleList, name='core_vehicles_list'),
     path('vehicle_new/', newVehicle, name='core_vehicles_new'),
+    #Rotary Motion URLs
     path('rotaryMotion_list/', rotaryMotion, name='core_rotaryMotion_list'),
+    path('rotaryMotion_new/', newRotaryMotion, name='core_rotaryMotion_new'),
     path('monthly_list/', monthly, name='core_monthly_list'),
     path('rotaryMonthly_list/', rotaryMonthly, name='core_rotaryMonthly_list'),
 ]

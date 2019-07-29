@@ -9,6 +9,7 @@ from .models import (
 from .forms import (
     PersonForm,
     VehicleForm,
+    RotaryMotionForm,
 )
 
 
@@ -42,7 +43,7 @@ def newPerson(request):
 def vehicleList(request):
     vehicles = Vehicle.objects.all()
     form     = VehicleForm()
-    
+
     context  = {
         'vehicles': vehicles,
         'form'    : form,
@@ -58,15 +59,25 @@ def newVehicle(request):
 
     return redirect('core_vehicles_list')
 
-
+#Rotary Motion Viwes
 def rotaryMotion(request):
-    rotaryMotions  = RotaryMotion.objects.all()
-    
-    context = {
+    rotaryMotions = RotaryMotion.objects.all()
+    form          = RotaryMotionForm()
+
+    context       = {
         'rotaryMotions': rotaryMotions,
+        'form'         : form,
     }
 
     return render(request, 'core/rotaryMotionList.html', context)
+
+
+def newRotaryMotion(request):
+    form = RotaryMotionForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    return redirect('core_rotaryMotion_list')
 
 def monthly(request):
     monthly  = Monthly.objects.all()

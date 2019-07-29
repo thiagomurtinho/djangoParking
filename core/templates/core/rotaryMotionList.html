@@ -12,5 +12,12 @@
     {%for rotaryMotion in rotaryMotions%}
         <li>{{ rotaryMotion }}</li>
     {% endfor %}
+
+    <form action="{% url 'core_rotaryMotion_new' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
 </body>
 </html>
