@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import (
     Person,
     Vehicle,
@@ -6,6 +6,9 @@ from .models import (
     Monthly,
     RotaryMonthly,
     )
+from .forms import (
+    PersonForm,
+)
 
 
 def home(request):
@@ -18,12 +21,20 @@ def home(request):
 
 def personList(request):
     people  = Person.objects.all()
+    form    = PersonForm()
     
     context = {
         'people': people,
+        'form'  : form,
     }
 
     return render(request, 'core/personList.html', context)
+
+def newPerson(request):
+    form = PersonForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+    return redirect('core_persons_list')
 
 
 def vehicleList(request):
