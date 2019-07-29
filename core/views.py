@@ -77,6 +77,21 @@ def newVehicle(request):
 
     return redirect('core_vehicles_list')
 
+
+def updateVehicle(request, id):
+    vehicles = Vehicle.objects.get(id=id)
+    form   = VehicleForm(request.POST or None, instance=vehicles)
+    data   = {
+        'vehicles': vehicles,
+        'form'  : form,
+    }
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_vehicles_list')
+    else:
+        return render(request, 'core/vehicleUpdate.html', data)
+
 #Rotary Motion Viwes
 def rotaryMotion(request):
     rotaryMotions = RotaryMotion.objects.all()
