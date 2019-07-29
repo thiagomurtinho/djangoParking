@@ -11,6 +11,7 @@ from .forms import (
     VehicleForm,
     RotaryMotionForm,
     MonthlyForm,
+    RotaryMonthlyForm,
 )
 
 
@@ -100,13 +101,23 @@ def newMonthly(request):
 
     return redirect('core_monthly_list')
 
-
+#Rotary Monthly Views
 def rotaryMonthly(request):
-    rotaryMonthly  = RotaryMonthly.objects.all()
+    rotaryMonthly = RotaryMonthly.objects.all()
+    form          = RotaryMonthlyForm()
     
-    context = {
+    context       = {
         'rotaryMonthly': rotaryMonthly,
+        'form'         : form,
     }
 
     return render(request, 'core/rotaryMonthlyList.html', context)
+
+
+def newRotaryMonthly(request):
+    form = RotaryMonthlyForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    return redirect('core_rotaryMonthly_list')
 

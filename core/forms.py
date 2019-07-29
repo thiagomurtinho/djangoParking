@@ -4,6 +4,7 @@ from .models import (
     Vehicle,
     RotaryMotion,
     Monthly,
+    RotaryMonthly,
     )
 
 
@@ -28,4 +29,10 @@ class RotaryMotionForm(ModelForm):
 class MonthlyForm(ModelForm):
     class Meta:
         model = Monthly
+        fields = '__all__'
+
+
+class RotaryMonthlyForm(ModelForm):
+    class Meta:
+        model = RotaryMonthly
         fields = '__all__'

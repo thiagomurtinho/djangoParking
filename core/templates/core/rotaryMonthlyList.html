@@ -12,5 +12,11 @@
     {%for monthly in rotaryMonthly%}
         <li>{{ monthly }}</li>
     {% endfor %}
+
+    <form action="{% url 'core_rotaryMonthly_new' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
