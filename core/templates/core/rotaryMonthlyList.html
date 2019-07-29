@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Rotary Motion</title>
+    <title>Monthly list</title>
 </head>
 <body>
-    <h1>Rotary Motion</h1>
+    <h1>Monthly list</h1>
     
-    {%for rotaryMotion in rotaryMotions%}
-        <li>{{ rotaryMotion }}</li>
+    {%for monthly in rotaryMonthly%}
+        <li>{{ monthly }}</li>
     {% endfor %}
 
-    <form action="{% url 'core_rotaryMotion_new' %}" method="post">
+    <form action="{% url 'core_rotaryMonthly_new' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>
     </form>
-
 </body>
 </html>
