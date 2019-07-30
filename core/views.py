@@ -112,6 +112,20 @@ def newRotaryMotion(request):
 
     return redirect('core_rotaryMotion_list')
 
+
+def updateRotaryMotion(request, id):
+    rotaryMotion = RotaryMotion.objects.get(id=id)
+    form         = RotaryMotionForm(request.POST or None, instance=rotaryMotion)
+    data         = {
+        'rotaryMotion': rotaryMotion,
+        'form'        : form,
+    }
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_rotaryMotion_list')
+    else:
+        return render(request, 'core/rotaryMotionUpdate.html', data)
 #Monthly Viwes
 def monthly(request):
     monthly = Monthly.objects.all()
