@@ -10,7 +10,9 @@
     <h1>Rotary Motion</h1>
     
     {%for rotaryMotion in rotaryMotions%}
-        <li>{{ rotaryMotion }}</li>
+        <li>
+            <a href="{% url 'core_rotaryMotion_update' rotaryMotion.id %}">  {{ rotaryMotion }} </a>
+        </li>
     {% endfor %}
 
     <form action="{% url 'core_rotaryMotion_new' %}" method="post">
