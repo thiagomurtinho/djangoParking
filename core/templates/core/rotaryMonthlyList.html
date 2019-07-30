@@ -10,7 +10,9 @@
     <h1>Monthly list</h1>
     
     {%for monthly in rotaryMonthly%}
-        <li>{{ monthly }}</li>
+        <li>
+            <a href="{% url 'core_rotaryMonthly_update' monthly.id %}">  {{ monthly }} </a>
+        </li>
     {% endfor %}
 
     <form action="{% url 'core_rotaryMonthly_new' %}" method="post">

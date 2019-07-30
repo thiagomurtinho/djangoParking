@@ -126,6 +126,8 @@ def updateRotaryMotion(request, id):
             return redirect('core_rotaryMotion_list')
     else:
         return render(request, 'core/rotaryMotionUpdate.html', data)
+
+
 #Monthly Viwes
 def monthly(request):
     monthly = Monthly.objects.all()
@@ -145,6 +147,22 @@ def newMonthly(request):
         form.save()
 
     return redirect('core_monthly_list')
+
+
+def updateMonthly(request, id):
+    monthly = Monthly.objects.get(id=id)
+    form         = MonthlyForm(request.POST or None, instance=monthly)
+    data         = {
+        'monthly': monthly,
+        'form'        : form,
+    }
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_monthly_list')
+    else:
+        return render(request, 'core/monthlyUpdate.html', data)
+
 
 #Rotary Monthly Views
 def rotaryMonthly(request):
@@ -166,3 +184,17 @@ def newRotaryMonthly(request):
 
     return redirect('core_rotaryMonthly_list')
 
+
+def updateRotaryMonthly(request, id):
+    rotaryMonthly = RotaryMonthly.objects.get(id=id)
+    form         = RotaryMonthlyForm(request.POST or None, instance=rotaryMonthly)
+    data         = {
+        'rotaryMonthly': rotaryMonthly,
+        'form'        : form,
+    }
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_rotaryMonthly_list')
+    else:
+        return render(request, 'core/rotaryMonthlyUpdate.html', data)

@@ -4,18 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Monthly list</title>
+    <title>Monthly update</title>
 </head>
 <body>
-    <h1>Monthly list</h1>
-    
-    {%for person in monthly%}
-        <li>
-            <a href="{% url 'core_monthly_update' person.id %}">  {{ person }} </a>
-        </li>
-    {% endfor %}
+    <h1>Monthly update</h1>
 
-    <form action="{% url 'core_monthly_new' %}" method="post">
+    <form action="{% url 'core_monthly_update' monthly.id %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>
